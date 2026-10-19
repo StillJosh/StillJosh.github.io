@@ -58,6 +58,8 @@ img { max-width: 100%; }
 .pub-side { flex: 0 0 168px; display: flex; flex-direction: column; gap: 8px; }
 .badge { align-self: flex-start; padding: 2px 8px; background: var(--accent); color: #fff; font: 12px var(--mono); border-radius: 3px; }
 .thumb { height: 100px; width: 100%; object-fit: cover; border: 1px solid var(--rule); border-radius: 4px; }
+.thumb-link { display: block; }
+.pub:has(.thumb-link:hover) .pub-title { color: var(--accent-dark); text-decoration: underline; }
 .pub-main { flex: 999 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
 .pub-title { color: var(--ink); font-weight: 600; font-size: 16px; }
 .home .pub-main { font-size: 16px; }

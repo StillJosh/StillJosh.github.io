@@ -1,11 +1,12 @@
 {% assign p = include.p %}{% assign me = site.first_name | append: " " | append: site.last_name %}{% assign me_u = "<u>" | append: me | append: "</u>" %}
+{% if p.blog %}{% assign href = p.blog | relative_url %}{% else %}{% assign href = p.links.pdf | default: p.links.web | default: '#' %}{% endif %}
 <div class="pub">
   <div class="pub-side">
     <span class="badge">{{ p.badge | default: p.venue }}</span>
-    {% if p.thumb %}<img class="thumb" src="{{ p.thumb | relative_url }}" alt="">{% endif %}
+    {% if p.thumb %}<a class="thumb-link" href="{{ href }}" tabindex="-1" aria-hidden="true"><img class="thumb" src="{{ p.thumb | relative_url }}" alt=""></a>{% endif %}
   </div>
   <div class="pub-main">
-    <a class="pub-title" href="{% if p.blog %}{{ p.blog | relative_url }}{% else %}{{ p.links.pdf | default: p.links.web | default: '#' }}{% endif %}">{{ p.title }}</a>
+    <a class="pub-title" href="{{ href }}">{{ p.title }}</a>
     <div class="muted">{{ p.authors | replace: me, me_u }}</div>
     <div class="muted"><i>{{ p.venue }} {{ p.year }}</i></div>
     {% include pub-links.html p=p %}
