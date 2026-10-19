@@ -253,11 +253,11 @@
       if (right.length) svgEl('path', { d: path(up.concat(dn)) + 'Z', class: 'fill-test' }, L.g);
       G.curves(mu);
       text(L.g, G.sx(mu / 2 + 1.6), G.sy(0.43), 'TV = ' + tv.toFixed(2), { class: 'label-test mono' });
-      var level = 1 - ALPHA + tv;
+      var level = 1 - ALPHA + 2 * tv;
       band(q(1 - ALPHA), q(level));
       text(R.g, R.x1, R.y0 - 6, level >= 1 ? 'quantile level ≥ 100%' : 'quantile level ' + pct(level), { 'text-anchor': 'end', class: 'mono' });
     }
-    var shift = slider(m.ctrl, 'shift μ', 0, 0.6, 0.005, 0.13, draw);
+    var shift = slider(m.ctrl, 'shift μ', 0, 0.3, 0.001, 0.05, draw);
     draw();
   }
 
