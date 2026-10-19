@@ -5,7 +5,7 @@
     {% if p.thumb %}<img class="thumb" src="{{ p.thumb | relative_url }}" alt="">{% endif %}
   </div>
   <div class="pub-main">
-    <a class="pub-title" href="{{ p.links.pdf | default: p.links.abs | default: '#' }}">{{ p.title }}</a>
+    <a class="pub-title" href="{% if p.blog %}{{ p.blog | relative_url }}{% else %}{{ p.links.pdf | default: p.links.abs | default: '#' }}{% endif %}">{{ p.title }}</a>
     <div class="muted">{{ p.authors | replace: me, me_u }}</div>
     <div class="muted"><i>{{ p.venue }} {{ p.year }}</i></div>
     <div class="pub-links">{% for l in p.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</div>
