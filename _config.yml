@@ -7,13 +7,12 @@ baseurl: ""
 first_name: Joshua
 last_name: Stiller
 position: "PhD student, LMU Munich"
-office: "[Office / address line]"
 photo: /assets/img/profile.jpg   # empty shows a placeholder box
-email: "[email]"
+email: "joshua.stiller@lmu.de"
 links:
   - { name: github,   url: "https://github.com/StillJosh" }
-  - { name: scholar,  url: "#" }
-  - { name: linkedin, url: "#" }
+  - { name: scholar,  url: "https://scholar.google.com/citations?user=F0eKl3IAAAAJ" }
+  - { name: linkedin, url: "https://www.linkedin.com/in/joshua-stiller/" }
 
 nav:
   - { title: about,        url: "/",              key: about }
