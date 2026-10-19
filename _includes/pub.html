@@ -5,10 +5,10 @@
     {% if p.thumb %}<img class="thumb" src="{{ p.thumb | relative_url }}" alt="">{% endif %}
   </div>
   <div class="pub-main">
-    <a class="pub-title" href="{% if p.blog %}{{ p.blog | relative_url }}{% else %}{{ p.links.pdf | default: p.links.abs | default: '#' }}{% endif %}">{{ p.title }}</a>
+    <a class="pub-title" href="{% if p.blog %}{{ p.blog | relative_url }}{% else %}{{ p.links.pdf | default: p.links.web | default: '#' }}{% endif %}">{{ p.title }}</a>
     <div class="muted">{{ p.authors | replace: me, me_u }}</div>
     <div class="muted"><i>{{ p.venue }} {{ p.year }}</i></div>
-    <div class="pub-links">{% for l in p.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</div>
+    {% include pub-links.html p=p %}
     {% if p.blog %}<a class="pub-blog" href="{{ p.blog | relative_url }}">{{ p.blog_label | default: "Read the blog post" }} <span aria-hidden="true">→</span></a>{% endif %}
   </div>
 </div>

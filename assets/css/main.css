@@ -63,8 +63,9 @@ img { max-width: 100%; }
 .home .pub-main { font-size: 16px; }
 .home .pub-title { font-size: 17px; }
 .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-.pub-links a { padding: 2px 10px; border: 1px solid #d4d8de; border-radius: 3px; font: 12px var(--mono); color: var(--ink); }
-.pub-links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.pub-links a, .pub-links button { padding: 2px 10px; border: 1px solid #d4d8de; border-radius: 3px; background: #fff; font: 12px var(--mono); color: var(--ink); cursor: pointer; }
+.pub-links a:hover, .pub-links button:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.post-hero-text .pub-links { margin-top: 14px; }
 
 .pub-blog { align-self: flex-start; margin-top: 8px; padding: 7px 14px; background: var(--accent-tint); color: var(--accent); font-weight: 500; font-size: 15px; border-radius: 4px; }
 .pub-blog:hover { background: var(--accent); color: #fff; text-decoration: none; }

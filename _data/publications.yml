@@ -1,22 +1,73 @@
 # Newest first. `selected: true` shows the entry on the home page.
-# blog: URL of the related note, e.g. /notes/2026/my-post/ (shown as a highlighted button)
-# links: any of abs, pdf, code, bib, html, slides (rendered in the order given)
-- title: "Conformal Prediction for Time-Dependent PDEs"
+# id: referenced by a note's `paper:` front matter to show the paper's buttons under the note title
+# blog: URL of the related note (shown as a highlighted button, and the title links there)
+# links: any of pdf, code, web (rendered in this order when present)
+# bibtex: copied to the clipboard by the bib button
+- id: conformal-pde
+  title: "Conformal Prediction for Time-Dependent PDEs"
   authors: "Joshua Stiller, Annika Schneider, Eyke Hüllermeier"
   venue: NeurIPS
   year: 2026
   badge: NeurIPS
   thumb: /assets/img/pubs/conformal-pde.svg
-  selected: true
   blog: "/notes/2026/conformal-prediction-pdes/"
   links:
-    pdf: "#"
-    code: "#"
+    code: "https://github.com/StillJosh/Conformal_Prediction_for_Time-Dependent_PDEs"
 
-- title: "[Paper title]"
-  authors: "[Authors]"
-  venue: "[Venue]"
-  year: "[Year]"
+- id: operatorshap
+  title: "OperatorSHAP: Fast and Accurate Shapley Value Estimation for Neural Operators"
+  authors: "Joshua Stiller, Santo M. A. R. Thies, Felix Czaja, Eyke Hüllermeier"
+  venue: arXiv preprint
+  year: 2026
+  badge: arXiv
   selected: true
   links:
-    pdf: "#"
+    pdf: "https://arxiv.org/pdf/2606.28065"
+  bibtex: |
+    @misc{stiller2026operatorshapfastaccurateshapley,
+          title={OperatorSHAP: Fast and Accurate Shapley Value Estimation for Neural Operators},
+          author={Joshua Stiller and Santo M. A. R. Thies and Felix Czaja and Eyke Hüllermeier},
+          year={2026},
+          eprint={2606.28065},
+          archivePrefix={arXiv},
+          primaryClass={cs.LG},
+          url={https://arxiv.org/abs/2606.28065},
+    }
+
+- id: decision-aligned-uq
+  title: "Decision-Aligned Evaluation of Uncertainty Quantification"
+  authors: "Annika Schneider, Tommy Rochussen, Joshua Stiller, Vincent Fortuin"
+  venue: arXiv preprint
+  year: 2026
+  badge: arXiv
+  links:
+    pdf: "https://arxiv.org/pdf/2606.26990"
+  bibtex: |
+    @misc{schneider2026decisionalignedevaluationuncertaintyquantification,
+          title={Decision-Aligned Evaluation of Uncertainty Quantification},
+          author={Annika Schneider and Tommy Rochussen and Joshua Stiller and Vincent Fortuin},
+          year={2026},
+          eprint={2606.26990},
+          archivePrefix={arXiv},
+          primaryClass={cs.LG},
+          url={https://arxiv.org/abs/2606.26990},
+    }
+
+- id: uncertainties-dynamical-systems
+  title: "What Uncertainties Do We Need for Dynamical Systems?"
+  authors: "Yusuf Sale, Christopher Bülte, Felix Czaja, Joshua Stiller, Eyke Hüllermeier"
+  venue: EIML Workshop at ICML
+  year: 2026
+  badge: ICML-W
+  links:
+    pdf: "https://arxiv.org/pdf/2606.11988"
+  bibtex: |
+    @misc{sale2026uncertaintiesneeddynamicalsystems,
+          title={What Uncertainties Do We Need for Dynamical Systems?},
+          author={Yusuf Sale and Christopher Bülte and Felix Czaja and Joshua Stiller and Eyke Hüllermeier},
+          year={2026},
+          eprint={2606.11988},
+          archivePrefix={arXiv},
+          primaryClass={cs.LG},
+          url={https://arxiv.org/abs/2606.11988},
+    }

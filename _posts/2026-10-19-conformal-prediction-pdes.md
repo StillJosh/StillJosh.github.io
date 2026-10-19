@@ -2,6 +2,7 @@
 layout: post
 title: "Conformal prediction for time-dependent PDEs"
 description: "Why non-exchangeable conformal prediction fails on function spaces, and when it works on discretized linear PDEs."
+paper: conformal-pde
 ---
 
 Conformal prediction (CP) is a neat method to estimate the uncertainty of a model. Its simplicity and provable guarantees made it one of the hottest topics in ML over the past years. With dozens of papers in top-rated venues, it has seemingly been applied in every way possible, extending even into areas where it is not (naturally) possible. One such area is time series.

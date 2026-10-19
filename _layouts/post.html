@@ -6,6 +6,7 @@ layout: default
   <div class="wrap-narrow post-hero-text">
     <div class="meta">{{ page.date | date: '%Y-%m-%d' }} · {% assign words = content | number_of_words %}{{ words | divided_by: 200 | at_least: 1 }} min read</div>
     <h1>{{ page.title }}</h1>
+    {% if page.paper %}{% assign paper = site.data.publications | where: "id", page.paper | first %}{% include pub-links.html p=paper %}{% endif %}
   </div>
 </header>
 <main class="wrap-narrow post">
