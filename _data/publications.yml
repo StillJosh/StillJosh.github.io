@@ -1,19 +1,8 @@
-# Newest first. `selected: true` shows the entry on the home page.
+# Order here is the display order. `selected: true` shows the entry on the home page.
 # id: referenced by a note's `paper:` front matter to show the paper's buttons under the note title
 # blog: URL of the related note (shown as a highlighted button, and the title links there)
 # links: any of pdf, code, web (rendered in this order when present)
 # bibtex: copied to the clipboard by the bib button
-- id: conformal-pde
-  title: "Conformal Prediction for Time-Dependent PDEs"
-  authors: "Joshua Stiller, Annika Schneider, Eyke Hüllermeier"
-  venue: NeurIPS
-  year: 2026
-  badge: NeurIPS
-  thumb: /assets/img/pubs/conformal-pde.svg
-  blog: "/notes/2026/conformal-prediction-pdes/"
-  links:
-    code: "https://github.com/StillJosh/Conformal_Prediction_for_Time-Dependent_PDEs"
-
 - id: operatorshap
   title: "OperatorSHAP: Fast and Accurate Shapley Value Estimation for Neural Operators"
   authors: "Joshua Stiller, Santo M. A. R. Thies, Felix Czaja, Eyke Hüllermeier"
@@ -33,6 +22,18 @@
           primaryClass={cs.LG},
           url={https://arxiv.org/abs/2606.28065},
     }
+
+- id: conformal-pde
+  title: "Conformal Prediction for Time-Dependent PDEs"
+  authors: "Joshua Stiller, Annika Schneider, Eyke Hüllermeier"
+  venue: NeurIPS
+  year: 2026
+  badge: NeurIPS
+  thumb: /assets/img/pubs/conformal-pde.svg
+  selected: true
+  blog: "/notes/2026/conformal-prediction-pdes/"
+  links:
+    code: "https://github.com/StillJosh/Conformal_Prediction_for_Time-Dependent_PDEs"
 
 - id: decision-aligned-uq
   title: "Decision-Aligned Evaluation of Uncertainty Quantification"
