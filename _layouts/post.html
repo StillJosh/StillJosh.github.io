@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<header class="post-hero">
+  <div class="post-hero-bg" aria-hidden="true"><canvas id="flow"></canvas></div>
+  <div class="wrap-narrow post-hero-text">
+    <div class="meta">{{ page.date | date: '%Y-%m-%d' }} · {% assign words = content | number_of_words %}{{ words | divided_by: 200 | at_least: 1 }} min read</div>
+    <h1>{{ page.title }}</h1>
+  </div>
+</header>
+<main class="wrap-narrow post">
+  <article class="prose">
+    {{ content }}
+  </article>
+  <div class="post-nav">
+    <a href="{{ '/notes/' | relative_url }}">← all notes</a>
+    {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
+  </div>
+</main>
+<script src="{{ '/assets/js/flow.js' | relative_url }}" defer></script>

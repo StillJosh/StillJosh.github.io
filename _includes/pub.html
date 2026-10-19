@@ -1,0 +1,14 @@
+{% assign p = include.p %}{% assign me = site.first_name | append: " " | append: site.last_name %}{% assign me_u = "<u>" | append: me | append: "</u>" %}
+<div class="pub">
+  <div class="pub-side">
+    <span class="badge">{{ p.badge | default: p.venue }}</span>
+    {% if p.thumb %}<img class="thumb" src="{{ p.thumb | relative_url }}" alt="">{% endif %}
+  </div>
+  <div class="pub-main">
+    <a class="pub-title" href="{{ p.links.pdf | default: p.links.abs | default: '#' }}">{{ p.title }}</a>
+    <div class="muted">{{ p.authors | replace: me, me_u }}</div>
+    <div class="muted"><i>{{ p.venue }} {{ p.year }}</i></div>
+    <div class="pub-links">{% for l in p.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</div>
+    {% if p.blog %}<a class="pub-blog" href="{{ p.blog | relative_url }}">{{ p.blog_label | default: "Read the blog post" }} <span aria-hidden="true">→</span></a>{% endif %}
+  </div>
+</div>

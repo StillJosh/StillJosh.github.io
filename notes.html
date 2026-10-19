@@ -1,0 +1,17 @@
+---
+layout: default
+title: notes
+nav: notes
+permalink: /notes/
+---
+<main class="wrap page">
+  <h1>notes</h1>
+  {% if site.posts.size == 0 %}<p class="muted">No notes yet.</p>{% endif %}
+  {% assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+  {% for y in by_year %}
+  <h2>{{ y.name }}</h2>
+  <div class="post-list">
+    {% for post in y.items %}<a href="{{ post.url | relative_url }}"><span>{{ post.title }}</span><span class="date">{{ post.date | date: '%Y-%m-%d' }}</span></a>{% endfor %}
+  </div>
+  {% endfor %}
+</main>

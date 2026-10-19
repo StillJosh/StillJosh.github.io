@@ -1,0 +1,22 @@
+# Newest first. `selected: true` shows the entry on the home page.
+# blog: URL of the related note, e.g. /notes/2026/my-post/ (shown as a highlighted button)
+# links: any of abs, pdf, code, bib, html, slides (rendered in the order given)
+- title: "Conformal Prediction for Time-Dependent PDEs"
+  authors: "Joshua Stiller, Annika Schneider, Eyke Hüllermeier"
+  venue: NeurIPS
+  year: 2026
+  badge: NeurIPS
+  thumb: /assets/img/pubs/conformal-pde.svg
+  selected: true
+  blog: "/notes/2026/conformal-prediction-pdes/"
+  links:
+    pdf: "#"
+    code: "#"
+
+- title: "[Paper title]"
+  authors: "[Authors]"
+  venue: "[Venue]"
+  year: "[Year]"
+  selected: true
+  links:
+    pdf: "#"

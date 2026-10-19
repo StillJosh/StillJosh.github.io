@@ -1,0 +1,35 @@
+title: Joshua Stiller
+description: Machine learning for PDEs and dynamical systems.
+url: https://stilljosh.github.io
+baseurl: ""
+
+# --- profile (edit these) ---
+first_name: Joshua
+last_name: Stiller
+position: "PhD student, LMU Munich"
+office: "[Office / address line]"
+photo: /assets/img/profile.jpg   # empty shows a placeholder box
+email: "[email]"
+links:
+  - { name: github,   url: "https://github.com/StillJosh" }
+  - { name: scholar,  url: "#" }
+  - { name: linkedin, url: "#" }
+
+nav:
+  - { title: about,        url: "/",              key: about }
+  - { title: publications, url: "/publications/", key: publications }
+  - { title: notes,        url: "/notes/",        key: notes }
+
+# --- build ---
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: null     # math is rendered client-side by KaTeX
+permalink: /notes/:year/:title/
+plugins:
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

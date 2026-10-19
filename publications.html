@@ -1,0 +1,10 @@
+---
+layout: default
+title: publications
+nav: publications
+permalink: /publications/
+---
+<main class="wrap page">
+  <h1>publications</h1>
+  {% for p in site.data.publications %}{% include pub.html p=p %}{% endfor %}
+</main>

@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<div class="home-hero" aria-hidden="true"><img src="{{ '/assets/img/streaks.svg' | relative_url }}" alt=""></div>
+<main class="wrap home">
+
+<section class="intro">
+  <div class="intro-text">
+    <div class="intro-head">
+      <h1><b>{{ site.first_name }}</b> {{ site.last_name }}</h1>
+      <div class="muted">{{ site.position }}</div>
+    </div>
+    {{ content }}
+  </div>
+  <div class="intro-photo">
+    {% if site.photo != "" %}<img src="{{ site.photo | relative_url }}" alt="Photo of {{ site.first_name }} {{ site.last_name }}">{% else %}<div class="ph">[photo]</div>{% endif %}
+    <div class="muted small">{{ site.office }}</div>
+  </div>
+</section>
+
+<section id="publications">
+  <h2>selected publications</h2>
+  {% assign sel = site.data.publications | where: "selected", true %}
+  {% for p in sel %}{% include pub.html p=p %}{% endfor %}
+  <p class="small"><a href="{{ '/publications/' | relative_url }}">all publications →</a></p>
+</section>
+
+</main>
