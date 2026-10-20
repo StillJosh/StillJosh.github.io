@@ -53,8 +53,10 @@ img { max-width: 100%; }
 
 .date { font-family: var(--mono); font-size: 14px; color: var(--faint); white-space: nowrap; }
 
-.pub { display: flex; flex-wrap: wrap; gap: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+.pub { display: flex; flex-wrap: wrap; gap: 20px; margin: 0 -16px; padding: 16px; border-bottom: 1px solid var(--rule); }
 .pub:last-of-type { border-bottom: 0; }
+.pub-first { background: rgba(45, 106, 79, .045); }
+.pub-list { display: flex; flex-direction: column; }
 .pub-side { flex: 0 0 168px; display: flex; flex-direction: column; gap: 8px; }
 .badge { align-self: flex-start; padding: 2px 8px; background: var(--accent); color: #fff; font: 12px var(--mono); border-radius: 3px; }
 .thumb { height: 100px; width: 100%; object-fit: cover; border: 1px solid var(--rule); border-radius: 4px; }

@@ -41,6 +41,7 @@
   venue: arXiv preprint
   year: 2026
   badge: arXiv
+  thumb: /assets/img/pubs/decision-aligned-uq.svg
   links:
     pdf: "https://arxiv.org/pdf/2606.26990"
   bibtex: |
@@ -60,6 +61,7 @@
   venue: EIML Workshop at ICML
   year: 2026
   badge: ICML-W
+  thumb: /assets/img/pubs/uncertainties-dynamical-systems.svg
   links:
     pdf: "https://arxiv.org/pdf/2606.11988"
   bibtex: |

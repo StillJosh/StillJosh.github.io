@@ -20,7 +20,7 @@ layout: default
 <section id="publications">
   <h2>selected publications</h2>
   {% assign sel = site.data.publications | where: "selected", true %}
-  {% for p in sel %}{% include pub.html p=p %}{% endfor %}
+  <div class="pub-list">{% for p in sel %}{% include pub.html p=p %}{% endfor %}</div>
   <p class="small"><a href="{{ '/publications/' | relative_url }}">all publications →</a></p>
 </section>
 
