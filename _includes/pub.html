@@ -1,6 +1,6 @@
 {% assign p = include.p %}{% assign me = site.first_name | append: " " | append: site.last_name %}{% assign me_u = "<u>" | append: me | append: "</u>" %}{% assign lead = p.authors | slice: 0, me.size %}
 {% if p.blog %}{% assign href = p.blog | relative_url %}{% else %}{% assign href = p.links.pdf | default: p.links.web | default: '#' %}{% endif %}
-<div class="pub{% if lead == me %} pub-first{% endif %}">
+<div class="pub{% if include.highlight and lead == me %} pub-first{% endif %}">
   <div class="pub-side">
     <span class="badge">{{ p.badge | default: p.venue }}</span>
     {% if p.thumb %}<a class="thumb-link" href="{{ href }}" tabindex="-1" aria-hidden="true"><img class="thumb" src="{{ p.thumb | relative_url }}" alt=""></a>{% endif %}
