@@ -1,5 +1,5 @@
-// Particles with short fading trails, advected by a meandering 2D flow
-// psi = y - a sin(k x - w t) cos(m y). Draws into <canvas id="flow">.
+// Particles with short fading trails moving at constant speed U along a meandering
+// direction theta = a cos(k x - w t) cos(m y). Draws into <canvas id="flow">.
 (function () {
   var c = document.getElementById('flow');
   if (!c) return;
@@ -15,14 +15,13 @@
   window.addEventListener('resize', resize);
 
   var N = W < 600 ? 30 : 60;                    // particle count
-  var L = 260, U = 40, a = 0.28, k = 2.0, m = 2.4, om = 0.6, TAIL = 45;
+  var L = 260, U = 40, a = 0.5, k = 2.0, m = 2.4, om = 0.6, TAIL = 45;
   var ALPHA = 0.28;                             // max trail opacity
   var GREEN = '45,106,79';                      // accent colour
 
   function vel(x, y, t) {
-    var X = x / L, Y = y / L, ph = k * X - om * t;
-    return [U * (1 + a * m * Math.sin(ph) * Math.sin(m * Y)),
-            U * a * k * Math.cos(ph) * Math.cos(m * Y)];
+    var th = a * Math.cos(k * x / L - om * t) * Math.cos(m * y / L);
+    return [U * Math.cos(th), U * Math.sin(th)];
   }
   function spawn(p, anywhere) {
     p.x = anywhere ? Math.random() * W : -40 * Math.random();
