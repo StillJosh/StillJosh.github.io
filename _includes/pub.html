@@ -10,6 +10,5 @@
     <div class="muted">{{ p.authors | replace: me, me_u }}</div>
     <div class="muted"><i>{{ p.venue }} {{ p.year }}</i></div>
     {% include pub-links.html p=p %}
-    {% if p.blog %}<a class="pub-blog" href="{{ p.blog | relative_url }}">{{ p.blog_label | default: "Read the blog post" }} <span aria-hidden="true">→</span></a>{% endif %}
   </div>
 </div>

@@ -69,8 +69,8 @@ img { max-width: 100%; }
 .pub-links a:hover, .pub-links button:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 .post-hero-text .pub-links { margin-top: 14px; }
 
-.pub-blog { align-self: flex-start; margin-top: 8px; padding: 7px 14px; background: var(--accent-tint); color: var(--accent); font-weight: 500; font-size: 15px; border-radius: 4px; }
-.pub-blog:hover { background: var(--accent); color: #fff; text-decoration: none; }
+.pub-links .pub-blog { border-color: var(--accent-tint); background: var(--accent-tint); color: var(--accent); font-weight: 600; }
+.pub-links .pub-blog:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
 
 .post-list { display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
 .post-list a { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); color: var(--ink); }
