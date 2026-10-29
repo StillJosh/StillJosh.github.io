@@ -10,6 +10,7 @@
   year: 2026
   badge: arXiv
   selected: true
+  blog: "/notes/2026/operatorshap/"
   links:
     pdf: "https://arxiv.org/pdf/2606.28065"
   bibtex: |
