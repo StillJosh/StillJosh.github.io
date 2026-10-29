@@ -27,6 +27,15 @@ kramdown:
 permalink: /notes/:year/:title/
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+
+# link previews (jekyll-seo-tag): every page shows the photo as a square card
+twitter:
+  card: summary
+defaults:
+  - scope: { path: "" }
+    values:
+      image: /assets/img/profile.jpg
 exclude:
   - Gemfile
   - Gemfile.lock
