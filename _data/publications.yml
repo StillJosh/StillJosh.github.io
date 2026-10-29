@@ -9,6 +9,7 @@
   venue: arXiv preprint
   year: 2026
   badge: arXiv
+  thumb: /assets/img/pubs/operatorshap.svg
   selected: true
   blog: "/notes/2026/operatorshap/"
   links:
