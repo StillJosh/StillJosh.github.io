@@ -27,7 +27,7 @@
 <footer class="site-footer">
   <div class="footer-links">
     <a href="mailto:{{ site.email }}">email</a>
-    {% for l in site.links %}<a href="{{ l.url }}">{{ l.name }}</a>{% endfor %}
+    {% for l in site.links %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.name }}</a>{% endfor %}
   </div>
   <div class="muted small">© {{ 'now' | date: '%Y' }} {{ site.first_name }} {{ site.last_name }}</div>
 </footer>
