@@ -6,9 +6,9 @@
 - id: operatorshap
   title: "OperatorSHAP: Fast and Accurate Shapley Value Estimation for Neural Operators"
   authors: "Joshua Stiller, Santo M. A. R. Thies, Felix Czaja, Eyke Hüllermeier"
-  venue: arXiv preprint
+  venue: NeurIPS
   year: 2026
-  badge: arXiv
+  badge: NeurIPS
   thumb: /assets/img/pubs/operatorshap.svg
   selected: true
   blog: "/notes/2026/operatorshap/"
