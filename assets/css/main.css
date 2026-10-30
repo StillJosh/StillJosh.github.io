@@ -15,6 +15,7 @@ html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: #fff; color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { color: var(--accent-dark); text-decoration: underline; }
+a[target="_blank"]::after { content: "↗"; content: "↗" / " (opens in a new tab)"; margin-left: 2px; font-size: .85em; }
 h1, h2, h3 { line-height: 1.2; }
 img { max-width: 100%; }
 .muted { color: var(--muted); }
