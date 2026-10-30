@@ -1,7 +1,7 @@
 # Order here is the display order. `selected: true` shows the entry on the home page.
 # id: referenced by a note's `paper:` front matter to show the paper's buttons under the note title
 # blog: URL of the related note (shown as a highlighted button, and the title links there)
-# links: any of pdf, code, web (rendered in this order when present)
+# links: any of neurips, pdf, code, web (rendered in this order when present)
 # bibtex: copied to the clipboard by the bib button
 - id: operatorshap
   title: "OperatorSHAP: Fast and Accurate Shapley Value Estimation for Neural Operators"
@@ -13,6 +13,7 @@
   selected: true
   blog: "/notes/2026/operatorshap/"
   links:
+    neurips: "https://neurips.cc/virtual/2026/loc/sydney/poster/154322"
     pdf: "https://arxiv.org/pdf/2606.28065"
   bibtex: |
     @misc{stiller2026operatorshapfastaccurateshapley,
@@ -35,6 +36,7 @@
   selected: true
   blog: "/notes/2026/conformal-prediction-pdes/"
   links:
+    neurips: "https://neurips.cc/virtual/2026/loc/sydney/poster/150920"
     code: "https://github.com/StillJosh/Conformal_Prediction_for_Time-Dependent_PDEs"
 
 - id: decision-aligned-uq
