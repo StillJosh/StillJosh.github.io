@@ -108,7 +108,8 @@ img { max-width: 100%; }
 .prose table { border-collapse: collapse; font-size: 15px; }
 .prose th, .prose td { border-bottom: 1px solid var(--rule); padding: 6px 12px; text-align: left; }
 /* interactive figures */
-.viz { margin: 36px 0; --cal: var(--accent); --cal-tint: rgba(45, 106, 79, .2); --test: #c2410c; --test-tint: rgba(194, 65, 12, .32); }
+.prose .viz { margin: 32px 0; }
+.viz { --cal: var(--accent); --cal-tint: rgba(45, 106, 79, .2); --test: #c2410c; --test-tint: rgba(194, 65, 12, .32); }
 .viz-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
 .viz-panel svg { display: block; width: 100%; height: auto; overflow: visible; }
 .viz svg text { font: 11px var(--sans); fill: var(--faint); }
