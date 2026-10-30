@@ -190,7 +190,6 @@
         nodes.forEach(function (x, i) { svgEl('circle', { cx: sx(x), cy: sy(s[0][i]), r: s[3], class: s[2] }, R.g); });
       });
       [L, R].forEach(function (p) { text(p.g, p.x1, p.y1 + 4, 't = ' + t.toFixed(2), { 'text-anchor': 'end', class: 'mono' }); });
-      m.out.textContent = 'model step t − 1 → t  ·  L² error ‖F̂(u(t − 1)) − u(t)‖ = ' + Math.sqrt(integrate(truth.map(function (v, j) { return Math.pow(v - pred[j], 2); }))).toFixed(3);
     }
 
     var raf = 0;
@@ -243,7 +242,6 @@
       signedArea(R.g, sx, syR, phi);
       curve(R.g, sx, syR, XS, phi, 'line-ink', { 'stroke-width': 1 });
       marker(R, R.g, sx, xh);
-      m.out.textContent = 'F̂ₓ̂(u) − F̂ₓ̂(ū) = ' + fx.toFixed(3) + '  ·  ∫Ω φ dx = ' + integrate(phi).toFixed(3) + '  at x̂ = ' + xh.toFixed(2);
     }
     var xsl = slider(m.ctrl, 'explained location x̂', 0.01, 0.99, 0.005, 0.5, draw);
     button(m.ctrl, 'new sample', sample);
@@ -436,7 +434,6 @@
       var nuStr = st.nu < 0 ? '(−' + (-st.nu).toFixed(3) + ')' : st.nu.toFixed(3), e = st.loss.toExponential(1).split('e');
       equations(D.g, D.x1 - 145, D.y1 + 6, [[['loss'], ['= (∫', '_S', ' φ̂ − ν(S))²']], [[], ['= (' + st.pred.toFixed(3).replace('-', '−') + ' − ' + nuStr + ')²']],
         [[], ['= ' + e[0] + '·10' + sup(+e[1])]]]);
-      m.out.textContent = 'iteration ' + it + '  ·  ' + st.nodes.length + ' nodes, ' + st.inS.filter(Boolean).length + ' in S';
     }
 
     var raf = 0;
