@@ -3,44 +3,9 @@
 (function () {
   'use strict';
 
-  // ---------- helpers ----------
-  var NS = 'http://www.w3.org/2000/svg';
-  var W = 360, H = 240, M = { l: 38, r: 12, t: 28, b: 30 };
-
-  function svgEl(tag, attrs, parent) {
-    var e = document.createElementNS(NS, tag);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    if (parent) parent.appendChild(e);
-    return e;
-  }
-  function text(parent, x, y, str, attrs) {
-    var t = svgEl('text', Object.assign({ x: x, y: y }, attrs || {}), parent);
-    t.textContent = str;
-    return t;
-  }
-  function clear(g) { while (g.firstChild) g.removeChild(g.firstChild); }
-  function lin(d0, d1, r0, r1) { return function (v) { return r0 + (v - d0) / (d1 - d0) * (r1 - r0); }; }
-  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-  function path(pts) {
-    return pts.map(function (p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join('');
-  }
-  function range(a, b, n) { var r = []; for (var i = 0; i < n; i++) r.push(a + (b - a) * i / (n - 1)); return r; }
-
-  // seeded uniform (mulberry32) and standard normal (Box-Muller)
-  function rng(seed) {
-    var a = seed >>> 0;
-    return function () {
-      a = (a + 0x6D2B79F5) >>> 0;
-      var t = a;
-      t = Math.imul(t ^ (t >>> 15), t | 1);
-      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-  function normal(seed) {
-    var u = rng(seed);
-    return function () { return Math.sqrt(-2 * Math.log(1 - u())) * Math.cos(2 * Math.PI * u()); };
-  }
+  var V = window.Viz;
+  var svgEl = V.svgEl, text = V.text, clear = V.clear, lin = V.lin, clamp = V.clamp, path = V.path, range = V.range, normal = V.normal;
+  var mount = V.mount, panel = V.panel, axes = V.axes, legend = V.legend, slider = V.slider, button = V.button;
 
   // standard normal cdf (Abramowitz-Stegun 7.1.26), its inverse (Acklam) and Gaussian density
   function Phi(x) {
@@ -65,71 +30,6 @@
   function pdf(x, m, s) { return Math.exp(-0.5 * Math.pow((x - m) / s, 2)) / (s * Math.sqrt(2 * Math.PI)); }
   function tvShift(m) { return 2 * Phi(m / 2) - 1; }  // TV between Gaussians with equal covariance, Mahalanobis distance m
   function pct(v) { return (100 * v).toFixed(0) + '%'; }
-
-  // ---------- layout ----------
-  function mount(id) {
-    var fig = document.getElementById(id);
-    if (!fig) return null;
-    var cap = fig.querySelector('figcaption');
-    var panels = document.createElement('div'); panels.className = 'viz-panels';
-    var ctrl = document.createElement('div'); ctrl.className = 'viz-controls';
-    var out = document.createElement('div'); out.className = 'viz-readout'; out.setAttribute('aria-live', 'polite');
-    [panels, ctrl, out].forEach(function (n) { fig.insertBefore(n, cap); });
-    return { panels: panels, ctrl: ctrl, out: out };
-  }
-
-  function panel(host, title) {
-    var wrap = document.createElement('div'); wrap.className = 'viz-panel'; host.appendChild(wrap);
-    var svg = svgEl('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': title }, wrap);
-    text(svg, M.l, 14, title, { class: 'viz-title' });
-    var axes = svgEl('g', {}, svg);
-    return { svg: svg, axes: axes, g: svgEl('g', {}, svg), x0: M.l, x1: W - M.r, y0: H - M.b, y1: M.t };
-  }
-
-  // x axis with ticks along the bottom, y axis with ticks along the left (either may be omitted)
-  function axes(p, sx, sy, xt, yt, xlabel) {
-    clear(p.axes);
-    svgEl('line', { x1: p.x0, x2: p.x1, y1: p.y0, y2: p.y0, class: 'axis' }, p.axes);
-    (xt || []).forEach(function (v) {
-      svgEl('line', { x1: sx(v), x2: sx(v), y1: p.y0, y2: p.y0 + 4, class: 'axis' }, p.axes);
-      text(p.axes, sx(v), p.y0 + 15, String(v), { 'text-anchor': 'middle' });
-    });
-    if (xlabel) text(p.axes, p.x1, p.y0 + 27, xlabel, { 'text-anchor': 'end' });
-    if (yt) {
-      svgEl('line', { x1: p.x0, x2: p.x0, y1: p.y0, y2: p.y1, class: 'axis' }, p.axes);
-      yt.forEach(function (v) {
-        svgEl('line', { x1: p.x0 - 4, x2: p.x0, y1: sy(v), y2: sy(v), class: 'axis' }, p.axes);
-        text(p.axes, p.x0 - 7, sy(v) + 4, String(v), { 'text-anchor': 'end' });
-      });
-    }
-  }
-
-  function legend(p, items) {
-    var x = p.x1;
-    items.slice().reverse().forEach(function (it) {
-      var t = text(p.svg, x, 14, it[0], { 'text-anchor': 'end', class: it[1] });
-      x -= t.getComputedTextLength() + 12;
-    });
-  }
-
-  function slider(ctrl, label, min, max, step, value, onInput) {
-    var l = document.createElement('label'); l.className = 'viz-slider';
-    var s = document.createElement('span'); s.textContent = label;
-    var inp = document.createElement('input');
-    inp.type = 'range'; inp.min = min; inp.max = max; inp.step = step; inp.value = value;
-    inp.addEventListener('input', onInput);
-    l.append(s, inp); ctrl.appendChild(l);
-    return inp;
-  }
-
-  // all buttons of a figure share one row
-  function button(ctrl, label, onClick) {
-    var row = ctrl.querySelector('.viz-buttons');
-    if (!row) { row = document.createElement('div'); row.className = 'viz-buttons'; ctrl.appendChild(row); }
-    var b = document.createElement('button'); b.type = 'button'; b.textContent = label;
-    b.addEventListener('click', onClick); row.appendChild(b);
-    return b;
-  }
 
   // prediction f(x) on [0,1] with a band of half-width `base`, widened to `wide` (orange) or narrowed (dashed base)
   function bandPanel(p) {
@@ -373,7 +273,6 @@
     var sx = lin(-3.4, 3.4, L.x0, L.x1), sy = lin(-2, 2, L.y0, L.y1), unit = sx(1) - sx(0);
     axes(L, sx, sy, [-3, -2, -1, 0, 1, 2, 3], [-2, -1, 0, 1, 2], 'u₁');
     text(L.axes, L.x0 + 4, L.y1 + 2, 'u₂');
-    L.svg.classList.add('draggable');
     var clip = svgEl('clipPath', { id: 'viz-drift-clip' }, L.svg);
     svgEl('rect', { x: L.x0, y: L.y1, width: L.x1 - L.x0, height: L.y0 - L.y1 }, clip);
     L.g.setAttribute('clip-path', 'url(#viz-drift-clip)');
@@ -411,16 +310,12 @@
       bar(R.y1 + 126, 'bands for u₁ only', u1);
     }
 
-    function drag(ev) {
-      var pt = L.svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
-      var v = pt.matrixTransform(L.svg.getScreenCTM().inverse());
+    V.draggable(L.svg, function (v) {
       var dx = (v.x - sx(0)) / unit, dy = -(v.y - sy(0)) / unit;
       dir.value = (Math.round(Math.atan2(dy, dx) * 180 / Math.PI) + 360) % 360;
       lsl.value = Math.min(1.5, Math.hypot(dx, dy));
       draw();
-    }
-    L.svg.addEventListener('pointerdown', function (ev) { L.svg.setPointerCapture(ev.pointerId); drag(ev); });
-    L.svg.addEventListener('pointermove', function (ev) { if (L.svg.hasPointerCapture(ev.pointerId)) drag(ev); });
+    });
 
     var dir = slider(m.ctrl, 'direction', 0, 359, 1, 30, draw);
     var lsl = slider(m.ctrl, 'drift length', 0, 1.5, 0.01, 0.3, draw);

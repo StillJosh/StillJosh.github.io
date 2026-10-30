@@ -69,4 +69,5 @@ In conclusion, we have shown that on a function space, non-exchangeable CP will 
 - Oliveira, R. I., Orenstein, P., Ramos, T., & Romano, J. V. (2024). [Split conformal prediction and non-exchangeable data](http://jmlr.org/papers/v25/23-1553.html). *JMLR*, 25.
 - Tibshirani, R. J., Barber, R. F., Candès, E., & Ramdas, A. (2019). [Conformal prediction under covariate shift](https://proceedings.neurips.cc/paper_files/paper/2019/file/8fb21ee7a2207526da55a679f0332de2-Paper.pdf). *NeurIPS*.
 
+<script src="{{ '/assets/js/viz.js' | relative_url }}" defer></script>
 <script src="{{ '/assets/js/cp-figures.js' | relative_url }}" defer></script>
