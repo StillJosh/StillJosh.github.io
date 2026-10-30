@@ -5,7 +5,7 @@ description: "Fast and accurate Shapley value estimation for neural operators."
 paper: operatorshap
 ---
 
-I've noticed lately, that I often trust our AI companions more than I trust my own ability to spot their mistakes. With every new generation of LLMs, I'm becoming less inclined to double-check their results. Still, I believe human oversight will remain important in certain domains of AI. One example is insurance premiums, which must not be influenced by racial biases hidden in names or residencial areas. Another is predictions in low-data regimes, where models are less reliable, and human experts could avert problematic decisions.
+I've noticed lately that I often trust our AI companions more than I trust my own ability to spot their mistakes. With every new generation of LLMs, I'm becoming less inclined to double-check their results. Still, I believe human oversight will remain important in certain domains of AI. One example is insurance premiums, which must not be influenced by racial biases hidden in names or residential areas. Another is predictions in low-data regimes, where models are less reliable, and human experts could avert problematic decisions.
 
 The latter setting often arises in my field of research, neural operators: models that predict physical quantities in science and engineering. In this field, training samples are usually costly to obtain, but the ground truth is well understood from a theoretical perspective. This enables professionals to judge the quality of model predictions.
 
@@ -20,8 +20,8 @@ When we want to explain multiple samples, amortization methods can shift the com
 
 For amortization to work, we need a shared property that we can generalize over. In this paper, we choose the underlying physical domain $$\Omega \subset \mathbb{R}^d$$, which is a connected subset of the $$1$$-, $$2$$-, or $$3$$-dimensional space and is often shared by all samples of a dataset. The main obstacle is that Shapley values are defined only for finitely many players, whereas our region $$\Omega$$ consists of infinitely many points.
 
-## Infinite player Aumann-Shapley values 
-The solution lies in Aumann-Shapley values. Introduced in 1974 ([Aumann & Shapley, 1974](#references)), they generalize Shapley values to infinitely many players. They still cannot give distinct attributions for every single point in our domain, but they allow each of the infinite players to contribute via a finite set of measures the model prediction (which we call a *game*). This makes the attribution problem tractable. Moreover, it yields a value function $$\nu(S)$$ that assigns an attribution to a coalition $$S$$ while preserving some of the Shapley properties.
+## Infinite-player Aumann-Shapley values
+The solution lies in Aumann-Shapley values. Introduced in 1974 ([Aumann & Shapley, 1974](#references)), they generalize Shapley values to infinitely many players. They still cannot give distinct attributions for every single point in our domain, but they allow each of the infinite players to contribute via a finite set of measures to the model prediction (which we call a *game*). This makes the attribution problem tractable. Moreover, it yields a value function $$\nu(S)$$ that assigns an attribution to a coalition $$S$$ while preserving some of the Shapley properties.
 
 To formalize this, let $$(\Omega, \mathcal{C}, \boldsymbol{\mu})$$ be a measure space, where $$S \in \mathcal{C}$$ denotes a region in $$\Omega$$ and defines a *coalition*. Typically, we want to model some physical property, which at a time $$t$$ assigns a value to each location $$x\in \Omega$$ via $$u: \Omega\times[0, \infty)\rightarrow \mathbb{R}$$. For example, in the heat equation, $$u(x, t)$$ is the temperature at location $$x\in \Omega$$ and time $$t$$. We want an AI model $$\hat{\mathcal{F}}$$ to approximate $$u(x,t)$$, usually using the true state $$u(x,t)$$ as input to predict $$\hat{\mathcal{F}}(u(x,t))(x) \approx u(x,t+1)$$. In practice, we work with a discretized version of $$u(x,t)$$, i.e., a vector of evaluations of $$u(x,t)$$ at specific locations. We denote this vector by $$\mathbf{u}_{t}$$.
 
@@ -42,7 +42,7 @@ To design our game, we need the following:
 2. We should be able to specify any region $$S\subset \Omega$$ and determine how it affects the output.
 3. It needs to satisfy the Aumann-Shapley criteria, in particular, $$f$$ must be continuously differentiable.
 
-We choose $$f$$ to be the neural operator that we want to explain (minus a baseline constant). For $$f$$ to be continuously differentiable, both its activations and its input need to be sufficiently smooth.[^diff] To isolate the effect of an area $$S$$, we will design the input to take the value $$u(x,t)$$ on $$S$$ and a baseline value $$\bar{u}(x,t)$$ elsewhere. As this constructed input needs to be smooth as well, we interpolate smoothly between $$S$$ and $$\Omega\setminus S$$, using bump functions $$\eta_{i}$$ that partition the domain $$\Omega$$. Concretely, for $m>0$, we define our game as
+We choose $$f$$ to be the neural operator that we want to explain (minus a baseline constant). For $$f$$ to be continuously differentiable, both its activations and its input need to be sufficiently smooth.[^diff] To isolate the effect of an area $$S$$, we will design the input to take the value $$u(x,t)$$ on $$S$$ and a baseline value $$\bar{u}(x,t)$$ elsewhere. As this constructed input needs to be smooth as well, we interpolate smoothly between $$S$$ and $$\Omega\setminus S$$, using bump functions $$\eta_{i}$$ that partition the domain $$\Omega$$. Concretely, for $$m>0$$, we define our game as
 
 $$
 \begin{aligned}
@@ -62,9 +62,9 @@ where $$\mu_{i}(S)$$ is the share of the mesh nodes under $$\eta_{i}$$ that belo
 Equipped with a game that guarantees an Aumann-Shapley value, we can proceed to learn an amortized model for the value. The training procedure will closely follow FastSHAP:
 1. Sample $$\mathbf{u}_{t}$$ from the dataset (which is represented on a mesh), a subset of the mesh nodes $$S$$, and a location $$\hat{x}\in \Omega$$ for the prediction we want to explain.
 2. Partition the domain into disjoint cells, each containing one mesh node (e.g., with Voronoi cells).
-3. Create a masked input $$\mathbf{u}^{S}_{t}$$ as described above and calculate the game value $$\hat{\mathcal{F}}_{\hat{x}}(\mathbf{u}^{S}_{t}) - \hat{\mathcal{F}}_{\hat{x}}(\mathbf{\bar{u}}) $$ at location $$\hat{x}$$.
+3. Create a masked input $$\mathbf{u}^{S}_{t}$$ as described above and calculate the game value $$\hat{\mathcal{F}}_{\hat{x}}(\mathbf{u}^{S}_{t}) - \hat{\mathcal{F}}_{\hat{x}}(\bar{\mathbf{u}}_{t})$$ at location $$\hat{x}$$.
 4. Let the explainer model predict an attribution field $$\hat{\varphi}(x,t)$$ for the point $$\hat{x}$$.
-5. Integrate $$\hat{\varphi}(x,t)$$ over the cells from step 2 that contain a mesh node from $$S$$ and measure the difference to the model prediction from step 3.
+5. Integrate $$\hat{\varphi}(x,t)$$ over the cells from step 2 that contain a mesh node from $$S$$ and measure the difference to the game value from step 3.
 6. Update the explainer model with the loss from step 5 and iterate.
 
 <figure class="viz" id="viz-train">
