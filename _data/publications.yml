@@ -15,6 +15,7 @@
   links:
     neurips: "https://neurips.cc/virtual/2026/loc/sydney/poster/154322"
     pdf: "https://arxiv.org/pdf/2606.28065"
+    code: "https://github.com/StillJosh/OperatorSHAP-NeurIPS2026"
   bibtex: |
     @misc{stiller2026operatorshapfastaccurateshapley,
           title={OperatorSHAP: Fast and Accurate Shapley Value Estimation for Neural Operators},
