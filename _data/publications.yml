@@ -37,7 +37,18 @@
   blog: "/notes/2026/conformal-prediction-pdes/"
   links:
     neurips: "https://neurips.cc/virtual/2026/loc/sydney/poster/150920"
+    pdf: "https://arxiv.org/pdf/2611.08409"
     code: "https://github.com/StillJosh/Conformal_Prediction_for_Time-Dependent_PDEs"
+  bibtex: |
+    @misc{stiller2026conformalpredictiontimedependentpdes,
+          title={Conformal Prediction for Time-Dependent PDEs},
+          author={Joshua Stiller and Annika Schneider and Eyke Hüllermeier},
+          year={2026},
+          eprint={2611.08409},
+          archivePrefix={arXiv},
+          primaryClass={cs.LG},
+          url={https://arxiv.org/abs/2611.08409},
+    }
 
 - id: decision-aligned-uq
   title: "Decision-Aligned Evaluation of Uncertainty Quantification"
