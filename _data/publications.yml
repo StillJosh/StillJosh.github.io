@@ -39,7 +39,7 @@
   links:
     neurips: "https://neurips.cc/virtual/2026/loc/sydney/poster/150920"
     pdf: "https://arxiv.org/pdf/2611.08409"
-    code: "https://github.com/StillJosh/Conformal_Prediction_for_Time-Dependent_PDEs"
+    code: "https://github.com/StillJosh/ConformalPDE-NeurIPS2026"
   bibtex: |
     @misc{stiller2026conformalpredictiontimedependentpdes,
           title={Conformal Prediction for Time-Dependent PDEs},
